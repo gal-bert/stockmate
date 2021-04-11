@@ -5,9 +5,27 @@
 
     @include('includes.header')
 
+    <script>
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('clock').innerHTML =
+                h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
+
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="startTime()">
 
 <div id="wrapper">
 
@@ -17,7 +35,11 @@
     <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">
             @include('includes.topbar')
-            @yield('content')
+
+            <div class="container-fluid">
+                @yield('content')
+            </div>
+
         </div>
         @include('includes.footer')
     </div>
@@ -52,5 +74,7 @@
 </body>
 
 @include('includes.scripts')
+
+@yield('additional-js')
 
 </html>

@@ -14,3 +14,10 @@
 
 <!-- Custom styles for this template-->
 <link href="/assets/css/sb-admin-2.min.css" rel="stylesheet">
+<link href="/assets/css/styles.css" rel="stylesheet">
+
+<link href="/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
