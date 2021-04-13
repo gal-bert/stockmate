@@ -14,5 +14,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        $this->call(ExpiryDateSeeder::class);
+        $this->call(MerchantSeeder::class);
+        $this->call(ProductsSeeder::class);
     }
 }

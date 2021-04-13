@@ -14,7 +14,10 @@ class CreateTransactionHeadersTable extends Migration
     public function up()
     {
         Schema::create('transaction_headers', function (Blueprint $table) {
-            $table->id();
+            $table->id('transaction_id');
+            $table->integer('merchant_id');
+            $table->integer('staff_id')->nullable();
+            $table->integer('status');
             $table->timestamps();
         });
     }

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ExpiryDate;
-use App\Models\TransactionDetail;
-use App\Models\TransactionHeader;
+use App\Models\Merchant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class TransactionHistoryController extends Controller
+class MerchantController extends Controller
 {
     /*
      * Display a listing of the resource.
@@ -17,9 +16,10 @@ class TransactionHistoryController extends Controller
     public function index()
     {
         $data = [
-            'headers' => TransactionHeader::all()
+            'merchants' => Merchant::all()
         ];
-        return view('pages.transaction_history.index')->with($data);
+
+        return view('pages.merchants.index')->with($data);
     }
 
     /*
@@ -40,7 +40,17 @@ class TransactionHistoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+           'merchantName' => 'required'
+        ]);
+
+        $merchant = new Merchant();
+        $merchant->merchant_name = $request->input('merchantName');
+        $merchant->merchant_address = $request->input('merchantAddress');
+        $merchant->merchant_contact = $request->input('merchantContact');
+        $merchant->save();
+
+        return redirect()->back()->with('success', 'Merchant added successfully');
     }
 
     /*
@@ -51,11 +61,7 @@ class TransactionHistoryController extends Controller
      */
     public function show($id)
     {
-        $data = [
-            'header' => TransactionHeader::find($id),
-            'expiries' => ExpiryDate::where('transaction_id', $id)->get()
-        ];
-        return view('pages.transaction_history.show')->with($data);
+        //
     }
 
     /*
@@ -78,7 +84,17 @@ class TransactionHistoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'merchantName' => 'required'
+        ]);
+
+        $merchant = Merchant::find($id);
+        $merchant->merchant_name = $request->input('merchantName');
+        $merchant->merchant_address = $request->input('merchantAddress');
+        $merchant->merchant_contact = $request->input('merchantContact');
+        $merchant->save();
+
+        return redirect()->back()->with('success', 'Merchant updated successfully');
     }
 
     /*
@@ -89,6 +105,8 @@ class TransactionHistoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $merchant = Merchant::find($id);
+        $merchant->delete();
+        return redirect()->back()->with('success', 'Merchant deleted successfully');
     }
 }

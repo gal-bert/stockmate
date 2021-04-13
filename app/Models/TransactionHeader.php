@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class TransactionHeader extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'transaction_id';
+
+    public function TransactionDetail()
+    {
+        return $this->hasMany(TransactionDetail::class, 'transaction_id', 'transaction_id');
+    }
+
+    public function Merchant()
+    {
+        return $this->hasOne(Merchant::class, 'merchant_id', 'merchant_id');
+    }
 }

@@ -37,21 +37,21 @@
         <div id="collapseTwo" class="{{request()->is('inbound*') || request()->is('outbound*') ? 'collapse show' : 'collapse'}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Transaction Type:</h6>
-                <a class="collapse-item {{request()->is('inbound*') ? 'active' : ''}}" href="{{route('inbound')}}">Inbound</a>
-                <a class="collapse-item {{request()->is('outbound*') ? 'active' : ''}}" href="{{route('outbound')}}">Outbound</a>
+                <a class="collapse-item {{request()->is('inbound*') ? 'active' : ''}}" href="{{route('inbound.index')}}">Inbound</a>
+                <a class="collapse-item {{request()->is('outbound*') ? 'active' : ''}}" href="{{route('outbound.index')}}">Outbound</a>
             </div>
         </div>
     </li>
 
     <li class="nav-item {{(request()->is('transactions*'))? 'active' : ''}}">
-        <a class="nav-link" href="{{route('transaction')}}">
+        <a class="nav-link" href="{{route('transactions.index')}}">
             <i class="fas fa-fw fa-history"></i>
             <span>Transaction History</span>
         </a>
     </li>
 
     <li class="nav-item {{(request()->is('inventory*')) ? 'active' : ''}}">
-        <a class="nav-link" href="{{route('inventory')}}">
+        <a class="nav-link" href="{{route('inventory.index')}}">
             <i class="fas fa-fw fa-warehouse"></i>
             <span>Inventory</span>
         </a>
@@ -68,7 +68,7 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item {{(request()->is('merchants*')) ? 'active' : ''}}">
-        <a class="nav-link" href="{{route('merchants')}}">
+        <a class="nav-link" href="{{route('merchants.index')}}">
             <i class="fas fa-fw fa-address-book"></i>
             <span>Merchants</span>
         </a>

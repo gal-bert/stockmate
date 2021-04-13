@@ -5,15 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TransactionDetail extends Model
+class ExpiryDate extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'transaction_detail_id';
 
-    public function TransactionHeader()
-    {
-        return $this->belongsTo(TransactionHeader::class, 'transaction_id', 'transaction_id');
-    }
+    protected $primaryKey = 'expiry_date_id';
 
     public function Product()
     {

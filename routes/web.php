@@ -13,10 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::view('/login', '_login')->name('login');
 Route::view('/', 'pages.dashboard.index')->name('dashboard');
 
-Route::view('/inbound', 'pages.log_transaction.inbound.index')->name('inbound');
-Route::view('/outbound', 'pages.log_transaction.outbound.index')->name('outbound');
-Route::view('/transactions', 'pages.transaction_history.index')->name('transaction');
-Route::view('/inventory', 'pages.inventory.index')->name('inventory');
-Route::view('/merchants', 'pages.merchants.index')->name('merchants');
+//Route::view('/inbound', 'pages.log_transaction.inbound.index')->name('inbound');
+Route::resource('inbound', \App\Http\Controllers\InboundController::class);
+
+Route::resource('/outbound', \App\Http\Controllers\OutboundController::class);
+Route::resource('/transactions', \App\Http\Controllers\TransactionHistoryController::class);
+Route::resource('/inventory', \App\Http\Controllers\InventoryController::class);
+Route::put('/inventory/{product_id}/qty/{qty_id}', [\App\Http\Controllers\InventoryController::class, 'updateQty'])
+    ->name('inventory.updateQty');
+
+Route::resource('/merchants', \App\Http\Controllers\MerchantController::class);

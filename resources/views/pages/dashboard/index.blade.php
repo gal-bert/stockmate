@@ -11,25 +11,8 @@
     <!-- Content Row -->
     <div class="row">
         <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Total Valuation
-                            </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Rp 154.400.000</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fa fa-dollar-sign fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -47,7 +30,7 @@
             </div>
         </div>
 
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -65,7 +48,7 @@
             </div>
         </div>
 
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-4 col-md-6 mb-4">
             <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -82,6 +65,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <hr style="margin-top: -5px">
@@ -103,7 +87,7 @@
                                     <tr>
                                         <th>Transaction ID</th>
                                         <th>Transaction Date</th>
-                                        <th>Transaction Type</th>
+                                        <th>Type</th>
                                     </tr>
                                     </thead>
                                     <tbody>

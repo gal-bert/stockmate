@@ -3,3 +3,20 @@
         margin-top: 10px ;
     }
 }
+
+.select2-selection__rendered {
+    line-height: 34px !important;
+}
+.select2-container .select2-selection--single {
+    margin-top: 1px;
+    height: 37px !important;
+}
+.select2-selection__arrow {
+    height: 36px !important;
+}
+
+.bg-login-image-custom{
+    background:url('/assets/img/undraw_logistics_x4dc.svg');
+    background-position:center;
+    background-size:cover
+}

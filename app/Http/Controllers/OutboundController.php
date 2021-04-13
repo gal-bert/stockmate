@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ExpiryDate;
-use App\Models\TransactionDetail;
-use App\Models\TransactionHeader;
+use App\Models\Merchant;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class TransactionHistoryController extends Controller
+class OutboundController extends Controller
 {
     /*
      * Display a listing of the resource.
@@ -17,9 +16,10 @@ class TransactionHistoryController extends Controller
     public function index()
     {
         $data = [
-            'headers' => TransactionHeader::all()
+            'products' => Product::all(),
+            'merchants' => Merchant::all()
         ];
-        return view('pages.transaction_history.index')->with($data);
+        return view('pages.log_transaction.outbound.index')->with($data);
     }
 
     /*
@@ -51,11 +51,7 @@ class TransactionHistoryController extends Controller
      */
     public function show($id)
     {
-        $data = [
-            'header' => TransactionHeader::find($id),
-            'expiries' => ExpiryDate::where('transaction_id', $id)->get()
-        ];
-        return view('pages.transaction_history.show')->with($data);
+        //
     }
 
     /*

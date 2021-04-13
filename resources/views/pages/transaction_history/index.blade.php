@@ -12,23 +12,29 @@
                 <table class="table table-bordered" id="transactions" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>No.</th>
                             <th>Transaction ID</th>
                             <th>Transaction Date</th>
+                            <th>Transaction Type</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {{--@foreach()--}}
+                    @foreach($headers as $header)
                         <tr>
-                            <td>1</td>
-                            <td>HPX001923</td>
-                            <td>11-04-2021</td>
+                            <td>{{$header->transaction_id}}</td>
+                            <td>{{$header->created_at}}</td>
+                            <td>{{$header->status == 1 ? 'Inbound' : 'Outbound'}}</td>
+{{--                            <td>--}}
+{{--                                @foreach($header->TransactionDetail as $detail)--}}
+{{--                                    {{$detail->Product->product_id}}-{{$detail->Product->product_name}}--}}
+{{--                                    <br>--}}
+{{--                                @endforeach--}}
+{{--                            </td>--}}
                             <td>
-                                <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-list"></i></a>
+                                <a href="{{route('transactions.show', $header->transaction_id)}}" class="btn btn-warning btn-xs"><i class="fa fa-list"></i></a>
                             </td>
                         </tr>
-                    {{--@endforeach--}}
+                    @endforeach
                     </tbody>
                 </table>
             </div>

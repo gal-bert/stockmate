@@ -150,6 +150,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'productSKU' => 'product SKU'
+    ],
 
 ];
