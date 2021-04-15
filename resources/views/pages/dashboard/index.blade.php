@@ -20,7 +20,7 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Month Transaction
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">127 Transactions</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$total}} Transactions</div>
                         </div>
                         <div class="col-auto">
                             <i class="fa fa-exchange-alt fa-2x text-gray-300"></i>
@@ -31,17 +31,17 @@
         </div>
 
         <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Expiring in 3 month
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Total Inbound
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">220 Items</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$inbound}} Transactions</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fa fa-hourglass fa-2x text-gray-300"></i>
+                            <i class="fa fa-box-open fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -49,17 +49,17 @@
         </div>
 
         <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                Expiring in 1 month
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Total Outbound
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">12 Items</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$outbound}} Transactions</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fa fa-exclamation-triangle fa-2x text-gray-300"></i>
+                            <i class="fa fa-dolly fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -73,12 +73,12 @@
     <!-- Content Row -->
     <div class="row">
 
-        <div class="col-lg-6 mb-4">
+        <div class="col-md-12 mb-4">
             <div class="row">
                 <div class="col-md-12 mb-4">
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Recent Transaction</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Recent Transaction and Merchant Activities</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -87,37 +87,21 @@
                                     <tr>
                                         <th>Transaction ID</th>
                                         <th>Transaction Date</th>
+                                        <th>Merchant</th>
+                                        <th>Handler</th>
                                         <th>Type</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {{--@foreach()--}}
+                                    @foreach($transactions->take(10) as $transaction)
                                     <tr>
-                                        <td>HPX001923</td>
-                                        <td>11-04-2021 / 13.50</td>
-                                        <td>Inbound</td>
+                                        <td>{{$transaction->transaction_id}}</td>
+                                        <td>{{$transaction->created_at}}</td>
+                                        <td>{{$transaction->Merchant->merchant_name}}</td>
+                                        <td>{{$transaction->Staff->staff_name}}</td>
+                                        <td>{{$transaction->status == 0 ? 'Outbound' : 'Inbound'}}</td>
                                     </tr>
-                                    {{--@endforeach--}}
-                                    <tr>
-                                        <td>HPX001923</td>
-                                        <td>11-04-2021 / 13.50</td>
-                                        <td>Inbound</td>
-                                    </tr>
-                                    <tr>
-                                        <td>HPX001923</td>
-                                        <td>11-04-2021 / 13.50</td>
-                                        <td>Inbound</td>
-                                    </tr>
-                                    <tr>
-                                        <td>HPX001923</td>
-                                        <td>11-04-2021 / 13.50</td>
-                                        <td>Inbound</td>
-                                    </tr>
-                                    <tr>
-                                        <td>HPX001923</td>
-                                        <td>11-04-2021 / 13.50</td>
-                                        <td>Inbound</td>
-                                    </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -127,53 +111,6 @@
             </div>
         </div>
 
-        <div class="col-lg-6 mb-4">
-            <div class="row">
-                <div class="col-md-12 mb-4">
-                    <div class="card shadow">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Merchant Activities</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="activities" width="100%" cellspacing="0">
-                                    <thead>
-                                    <tr>
-                                        <th>Merchant Name</th>
-                                        <th>Transactions</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {{--@foreach()--}}
-                                    <tr>
-                                        <td>PT. Krama Yudha Berlian Motor</td>
-                                        <td>54</td>
-                                    </tr>
-                                    {{--@endforeach--}}
-                                    <tr>
-                                        <td>PT. Krama Yudha Berlian Motor</td>
-                                        <td>54</td>
-                                    </tr>
-                                    <tr>
-                                        <td>PT. Krama Yudha Berlian Motor</td>
-                                        <td>54</td>
-                                    </tr>
-                                    <tr>
-                                        <td>PT. Krama Yudha Berlian Motor</td>
-                                        <td>54</td>
-                                    </tr>
-                                    <tr>
-                                        <td>PT. Krama Yudha Berlian Motor</td>
-                                        <td>54</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 @endsection
 
 @section('additional-js')
@@ -181,19 +118,10 @@
         $(document).ready(function () {
             $('#transactions').DataTable({
                 responsive: true,
-                ordering: false,
+                ordering: true,
                 searching: false,
                 paging: false,
-                bInfo: false
-            });
-        });
-        $(document).ready(function () {
-            $('#activities').DataTable({
-                responsive: true,
-                ordering: false,
-                searching: false,
-                paging: false,
-                bInfo: false
+                bInfo: true
             });
         });
     </script>

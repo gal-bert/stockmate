@@ -101,11 +101,11 @@
                                 </div>
                             </div>
 
-                            <form method="POST" style="display:inline;" action="{{route('merchants.destroy', $merchant->merchant_id)}}">
-                                {{ method_field('DELETE') }}
-                                {{ csrf_field() }}
-                                <button onclick="return confirm('Are you sure to delete merchant \'{{$merchant->merchant_name}}\'?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
-                            </form>
+{{--                            <form method="POST" style="display:inline;" action="{{route('merchants.destroy', $merchant->merchant_id)}}">--}}
+{{--                                {{ method_field('DELETE') }}--}}
+{{--                                {{ csrf_field() }}--}}
+{{--                                <button onclick="return confirm('Are you sure to delete merchant \'{{$merchant->merchant_name}}\'?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>--}}
+{{--                            </form>--}}
                         </td>
                     </tr>
                     @endforeach

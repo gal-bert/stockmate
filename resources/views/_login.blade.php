@@ -46,12 +46,12 @@
                                 </div>
                                 <form class="user">
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user"
+                                        <input type="email" class="form-control"
                                                id="exampleInputEmail" aria-describedby="emailHelp"
                                                placeholder="Username" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user"
+                                        <input type="password" class="form-control"
                                                id="exampleInputPassword" placeholder="Password" required>
                                     </div>
                                     <div class="form-group">
@@ -61,7 +61,7 @@
                                                 Me</label>
                                         </div>
                                     </div>
-                                    <a href="{{route('dashboard')}}" class="btn btn-primary btn-user btn-block">
+                                    <a href="{{route('dashboard.index')}}" class="btn btn-primary btn-block">
                                         Login
                                     </a>
                                     <hr>

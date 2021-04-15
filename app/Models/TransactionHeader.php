@@ -19,4 +19,9 @@ class TransactionHeader extends Model
     {
         return $this->hasOne(Merchant::class, 'merchant_id', 'merchant_id');
     }
+
+    public function Staff()
+    {
+        return $this->hasOne(Staff::class, 'staff_id', 'staff_id');
+    }
 }

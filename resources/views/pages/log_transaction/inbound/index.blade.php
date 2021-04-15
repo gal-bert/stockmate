@@ -14,27 +14,37 @@
             </div>
 
             <div class="card-body">
-                <div class="col-md-4">
-                    <label for="merchant">Supplier Merchant</label>
-                    <select name="merchant" class="form-control drops" data-live-search = "true" id="merchant_list">
-                        <option value="" disabled selected>-- choose merchant --</option>
-                        @foreach ($merchants as $merchant)
-                            <option value="{{$merchant->merchant_id}}">{{$merchant->merchant_name}}</option>
-                        @endforeach
-                    </select>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="merchant">Supplier Merchant</label>
+                        <select name="merchant" class="form-control drops" data-live-search = "true" id="merchant_list">
+                            <option value="" disabled selected>-- choose merchant --</option>
+                            @foreach ($merchants as $merchant)
+                                <option value="{{$merchant->merchant_id}}">{{$merchant->merchant_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="staff">Handler Staff</label>
+                        <select name="staff" class="form-control drops" data-live-search = "true" id="staff_list">
+                            <option value="" disabled selected>-- choose staff --</option>
+                            @foreach ($staffs as $staff)
+                                <option value="{{$staff->staff_id}}">{{$staff->staff_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <br>
                 <table class="table" id="products_table">
                     <thead>
                     <tr>
-                        <th>SKU / Product Name</th>
-                        <th>Quantity</th>
-                        <th>Expired Date</th>
+                        <th class="w-25">SKU / Product Name</th>
+                        <th class="w-25">Quantity</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr id="product0">
-                        <td style="width: 33.4%">
+                        <td>
                             <select name="products[]" class="form-control drops" data-live-search="true" id="product_list">
                                 <option value="" disabled selected>-- choose product --</option>
                                 @foreach ($products as $product)
@@ -44,9 +54,6 @@
                         </td>
                         <td>
                             <input type="number" name="quantities[]" class="form-control" required/>
-                        </td>
-                        <td>
-                            <input type="date" name="expiries[]" class="form-control" required/>
                         </td>
                     </tr>
                     <tr id="product1"></tr>

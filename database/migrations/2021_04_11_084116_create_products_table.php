@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->id('product_id');
             $table->string('product_name');
             $table->string('product_sku');
+            $table->integer('product_qty')->nullable();
             $table->timestamps();
         });
     }

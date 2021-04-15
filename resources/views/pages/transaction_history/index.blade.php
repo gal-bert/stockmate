@@ -15,6 +15,7 @@
                             <th>Transaction ID</th>
                             <th>Transaction Date</th>
                             <th>Transaction Type</th>
+                            <th>Handler</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -24,12 +25,7 @@
                             <td>{{$header->transaction_id}}</td>
                             <td>{{$header->created_at}}</td>
                             <td>{{$header->status == 1 ? 'Inbound' : 'Outbound'}}</td>
-{{--                            <td>--}}
-{{--                                @foreach($header->TransactionDetail as $detail)--}}
-{{--                                    {{$detail->Product->product_id}}-{{$detail->Product->product_name}}--}}
-{{--                                    <br>--}}
-{{--                                @endforeach--}}
-{{--                            </td>--}}
+                            <td>{{$header->Staff->staff_name}}</td>
                             <td>
                                 <a href="{{route('transactions.show', $header->transaction_id)}}" class="btn btn-warning btn-xs"><i class="fa fa-list"></i></a>
                             </td>

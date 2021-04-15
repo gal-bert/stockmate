@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ExpiryDate;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -68,10 +67,7 @@ class InventoryController extends Controller
      */
     public function show($id)
     {
-        $data = [
-            'product' => Product::find($id)
-        ];
-        return view('pages.inventory.show')->with($data);
+//
     }
 
     /*
@@ -96,7 +92,8 @@ class InventoryController extends Controller
     {
         $this->validate($request, [
             'productSKU' => 'required',
-            'productName' => 'required'
+            'productName' => 'required',
+            'productQuantity' => 'required'
         ]);
 
         $sku = $request->input('productSKU');
@@ -111,6 +108,7 @@ class InventoryController extends Controller
             $product = Product::find($id);
             $product->product_name = $request->input('productName');
             $product->product_sku = $sku;
+            $product->product_qty = $request->input('productQuantity');
             $product->save();
             return redirect()->back()->with('success', 'Product updated successfully');
         }

@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ExpiryDate;
-use App\Models\TransactionDetail;
-use App\Models\TransactionHeader;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 
-class TransactionHistoryController extends Controller
+class StaffController extends Controller
 {
     /*
      * Display a listing of the resource.
@@ -17,9 +15,9 @@ class TransactionHistoryController extends Controller
     public function index()
     {
         $data = [
-            'headers' => TransactionHeader::all()
+            'staffs' => Staff::all()
         ];
-        return view('pages.transaction_history.index')->with($data);
+        return view('pages.staffs.index')->with($data);
     }
 
     /*
@@ -40,7 +38,21 @@ class TransactionHistoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+           'staffName' => 'required',
+           'staffGender' => 'required',
+           'staffAddress' => 'required',
+           'staffContact' => 'required',
+        ]);
+
+        $staff = new Staff();
+        $staff->staff_name = $request->input('staffName');
+        $staff->staff_gender = $request->input('staffGender');
+        $staff->staff_address = $request->input('staffAddress');
+        $staff->staff_contact = $request->input('staffContact');
+        $staff->save();
+
+        return redirect()->back()->with('success', 'Staff created successfully');
     }
 
     /*
@@ -51,11 +63,7 @@ class TransactionHistoryController extends Controller
      */
     public function show($id)
     {
-        $data = [
-            'header' => TransactionHeader::find($id),
-            'details' => TransactionDetail::where('transaction_id', $id)->get()
-        ];
-        return view('pages.transaction_history.show')->with($data);
+        //
     }
 
     /*
@@ -78,7 +86,21 @@ class TransactionHistoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'staffName' => 'required',
+            'staffGender' => 'required',
+            'staffAddress' => 'required',
+            'staffContact' => 'required',
+        ]);
+
+        $staff = Staff::find($id);
+        $staff->staff_name = $request->input('staffName');
+        $staff->staff_gender = $request->input('staffGender');
+        $staff->staff_address = $request->input('staffAddress');
+        $staff->staff_contact = $request->input('staffContact');
+        $staff->save();
+
+        return redirect()->back()->with('success', 'Staff updated successfully');
     }
 
     /*

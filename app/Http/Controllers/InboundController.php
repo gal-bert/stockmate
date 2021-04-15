@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ExpiryDate;
 use App\Models\Merchant;
 use App\Models\Product;
+use App\Models\Staff;
 use App\Models\TransactionDetail;
 use App\Models\TransactionHeader;
 use Illuminate\Http\Request;
@@ -20,7 +21,8 @@ class InboundController extends Controller
     {
         $data = [
             'products' => Product::all(),
-            'merchants' => Merchant::all()
+            'merchants' => Merchant::all(),
+            'staffs' => Staff::all()
         ];
         return view('pages.log_transaction.inbound.index')->with($data);
     }
@@ -48,15 +50,15 @@ class InboundController extends Controller
             'products' => 'required',
             'merchant' => 'required',
             'quantities' => 'required|array',
-            'quantities.*' => 'numeric'
+            'quantities.*' => 'numeric',
+            'staff' => 'required'
         ]);
 
         $products = $request->input('products', []);
         $quantities = $request->input('quantities', []);
-        $expiries = $request->input('expiries', []);
 
         $transaction = new TransactionHeader();
-        $transaction->staff_id = 123;
+        $transaction->staff_id = $request->input('staff');
         $transaction->merchant_id = $request->input('merchant');
         $transaction->status = 1;
         $transaction->save();
@@ -70,14 +72,15 @@ class InboundController extends Controller
                 $detail = new TransactionDetail();
                 $detail->product_id = $products[$i];
                 $detail->transaction_id = $transactionId;
+                $detail->product_qty = $quantities[$i];
                 $detail->save();
 
-                $expiry = new ExpiryDate();
-                $expiry->product_id = $products[$i];
-                $expiry->expiry_date = $expiries[$i];
-                $expiry->product_qty = $quantities[$i];
-                $expiry->transaction_id = $transactionId;
-                $expiry->save();
+                $product = Product::find($products[$i]);
+                $currQty = $product->product_qty;
+                $newQty = $currQty + $quantities[$i];
+                $product->product_qty = $newQty;
+                $product->save();
+
             }
         }
         return redirect()->back()->with('success', 'Transaction Created Successfully');

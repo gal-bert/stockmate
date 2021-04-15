@@ -18,7 +18,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="#" method="post" enctype="multipart/form-data">
+                    <form action="{{route('inventory.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
                             <div class="form-group">
@@ -58,23 +58,15 @@
                         <td>{{$product->product_id}}</td>
                         <td>{{$product->product_sku}}</td>
                         <td>{{$product->product_name}}</td>
+                        <td>{{$product->product_qty ? : 0}}</td>
                         <td>
-                            <p style="display: none">{{$total = 0}}</p>
-                            @foreach($product->Expiry as $expiry)
-                                <p style="display: none">{{$total += $expiry->product_qty}}</p>
-                            @endforeach
-                            {{$total}}
-                        </td>
-                        <td>
-                            <a href="{{route('inventory.show', $product->product_id)}}" class="btn btn-warning btn-xs"><i class="fa fa-list"></i></a>
-
                             <a href="#" data-toggle="modal" data-target="#editProduct{{$product->product_id}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
 
                             <div class="modal fade" id="editProduct{{$product->product_id}}" tabindex="-1" role="dialog" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -91,6 +83,10 @@
                                                     <label for="productName">Product SKU</label>
                                                     <input type="text" class="form-control" name="productSKU" value="{{$product->product_sku}}" required>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="productName">Product Quantity</label>
+                                                    <input type="text" class="form-control" name="productQuantity" value="{{$product->product_qty ? : 0}}" required>
+                                                </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-primary">Update Product</button>
@@ -100,11 +96,11 @@
                                 </div>
                             </div>
 
-                            <form method="POST" style="display:inline;" action="{{route('inventory.destroy', $product->product_id)}}">
-                                {{ method_field('DELETE') }}
-                                {{ csrf_field() }}
-                                <button onclick="return confirm('Are you sure to delete product \'{{$product->product_name}}\'?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
-                            </form>
+{{--                            <form method="POST" style="display:inline;" action="{{route('inventory.destroy', $product->product_id)}}">--}}
+{{--                                {{ method_field('DELETE') }}--}}
+{{--                                {{ csrf_field() }}--}}
+{{--                                <button onclick="return confirm('Are you sure to delete product \'{{$product->product_name}}\'?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>--}}
+{{--                            </form>--}}
                         </td>
                     </tr>
                     @endforeach

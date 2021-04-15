@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ExpiryDate;
 use App\Models\TransactionDetail;
 use App\Models\TransactionHeader;
 use Illuminate\Http\Request;
 
-class TransactionHistoryController extends Controller
+class DashboardController extends Controller
 {
     /*
      * Display a listing of the resource.
@@ -16,10 +15,17 @@ class TransactionHistoryController extends Controller
      */
     public function index()
     {
+        $inbound  = TransactionHeader::where('status', 1)->count();
+        $outbound = TransactionHeader::where('status', 0)->count();
+        $total = $inbound + $outbound;
+
         $data = [
-            'headers' => TransactionHeader::all()
+            'transactions' => TransactionHeader::all(),
+            'inbound' => $inbound,
+            'outbound' => $outbound,
+            'total' => $total
         ];
-        return view('pages.transaction_history.index')->with($data);
+        return view('pages.dashboard.index')->with($data);
     }
 
     /*
@@ -51,11 +57,7 @@ class TransactionHistoryController extends Controller
      */
     public function show($id)
     {
-        $data = [
-            'header' => TransactionHeader::find($id),
-            'details' => TransactionDetail::where('transaction_id', $id)->get()
-        ];
-        return view('pages.transaction_history.show')->with($data);
+        //
     }
 
     /*

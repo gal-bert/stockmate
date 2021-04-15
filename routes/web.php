@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/login', '_login')->name('login');
-Route::view('/', 'pages.dashboard.index')->name('dashboard');
+Route::resource('/dashboard', \App\Http\Controllers\DashboardController::class);
 
 //Route::view('/inbound', 'pages.log_transaction.inbound.index')->name('inbound');
 Route::resource('inbound', \App\Http\Controllers\InboundController::class);
@@ -26,3 +26,4 @@ Route::put('/inventory/{product_id}/qty/{qty_id}', [\App\Http\Controllers\Invent
     ->name('inventory.updateQty');
 
 Route::resource('/merchants', \App\Http\Controllers\MerchantController::class);
+Route::resource('/staffs', \App\Http\Controllers\StaffController::class);
