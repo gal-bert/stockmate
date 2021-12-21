@@ -1,4 +1,4 @@
-image: registry.gitlab.com/gal_bert/stockmate.git
+image: registry.gitlab.com/gal_bert/stockmate:latest
 
 services:
   - mysql:5.7
