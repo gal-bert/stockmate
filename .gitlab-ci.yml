@@ -4,10 +4,13 @@ services:
   - mysql:5.7
 
 variables:
-  MYSQL_DATABASE: stockmate
+  MYSQL_DATABASE: laravel
   MYSQL_ROOT_PASSWORD: laravel
   DB_HOST: mysql
-  DB_USERNAME: laravel
+  DB_USERNAME: root
+  DB_PASSWORD: laravel
+  DB_DATABASE: laravel
+
 
 stages:
   - test
