@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', function(){
+Route::get('/', function(){
     return redirect()->route('dashboard.index');
 });
 
