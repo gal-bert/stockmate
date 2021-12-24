@@ -14,6 +14,7 @@ variables:
 
 stages:
   - test
+  - stage
   - deploy
 
 unit_test:
@@ -25,6 +26,26 @@ unit_test:
     - php artisan migrate
     - vendor/bin/phpunit
 
+staging:
+  stage: stage
+  environment:
+    name: development
+    url: http://staging.creativeworks.id
+
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
+  script:
+    - ~/.composer/vendor/bin/envoy run deploy --commit="$CI_COMMIT_SHA" --env=staging
+
+  when: always
+  only:
+    - master
+
 deploy_production:
   stage: deploy
   script:
@@ -34,10 +55,10 @@ deploy_production:
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
 
-    - ~/.composer/vendor/bin/envoy run deploy --commit="$CI_COMMIT_SHA"
+    - ~/.composer/vendor/bin/envoy run deploy --commit="$CI_COMMIT_SHA" --env=production
   environment:
     name: production
     url: http://192.168.1.1
-  when: always
+  when: manual
   only:
     - master

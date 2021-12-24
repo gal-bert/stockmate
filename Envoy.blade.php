@@ -2,8 +2,8 @@
 
 @setup
     $repository = 'git@gitlab.com:gal_bert/stockmate.git';
-    $releases_dir = '/var/www/stockmate/releases';
-    $app_dir = '/var/www/stockmate';
+    $releases_dir = $env == "production" ? '/var/www/stockmate/releases' : '/var/www/staging.stockmate/releases';
+    $app_dir = $env == "production" ? '/var/www/stockmate' : '/var/www/staging.stockmate';
     $release = date('YmdHis');
     $new_release_dir = $releases_dir .'/'. $release;
 @endsetup
