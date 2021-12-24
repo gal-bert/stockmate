@@ -29,7 +29,7 @@ unit_test:
     when: always
     reports:
       junit: report.xml
-
+  allow_failure: true
 
 staging:
   stage: stage

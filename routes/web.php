@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::view('/', function(){
+    return redirect()->route('dashboard.index');
+});
+
 Route::view('/login', '_login')->name('login');
 Route::resource('/dashboard', \App\Http\Controllers\DashboardController::class);
 
