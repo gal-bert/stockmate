@@ -6,7 +6,7 @@ services:
 variables:
   MYSQL_DATABASE: laravel
   MYSQL_ROOT_PASSWORD: laravel
-  DB_HOST: mysql
+  DB_HOST: mysql-server
   DB_USERNAME: root
   DB_PASSWORD: laravel
   DB_DATABASE: laravel
