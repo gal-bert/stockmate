@@ -1,12 +1,12 @@
 image: registry.gitlab.com/gal_bert/stockmate:latest
 
 services:
-  - mysql/mysql-server:latest
+  - mariadb:latest
 
 variables:
   MYSQL_DATABASE: laravel
   MYSQL_ROOT_PASSWORD: laravel
-  DB_HOST: mysql-server
+  DB_HOST: mariadb
   DB_USERNAME: root
   DB_PASSWORD: laravel
   DB_DATABASE: laravel
