@@ -1,7 +1,7 @@
 image: registry.gitlab.com/gal_bert/stockmate:latest
 
 services:
-  - mysql:5.7
+  - mysql:latest
 
 variables:
   MYSQL_DATABASE: laravel
