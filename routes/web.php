@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/login', '_login')->name('login');
-Route::resource('/', \App\Http\Controllers\DashboardController::class);
+Route::resource('/dashboard', \App\Http\Controllers\DashboardController::class);
 
 //Route::view('/inbound', 'pages.log_transaction.inbound.index')->name('inbound');
 Route::resource('inbound', \App\Http\Controllers\InboundController::class);
