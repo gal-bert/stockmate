@@ -25,6 +25,11 @@ unit_test:
     - php artisan key:generate
     - php artisan migrate
     - vendor/bin/phpunit
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
+
 
 staging:
   stage: stage
