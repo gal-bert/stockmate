@@ -30,7 +30,7 @@ staging:
   stage: stage
   environment:
     name: development
-    url: http://staging.creativeworks.id
+    url: http://staging.stockmate.gregorius.id
 
   before_script:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
@@ -58,7 +58,7 @@ deploy_production:
     - ~/.composer/vendor/bin/envoy run deploy --commit="$CI_COMMIT_SHA" --env=production
   environment:
     name: production
-    url: http://192.168.1.1
+    url: https://stockmate.gregorius.id
   when: manual
   only:
     - master
