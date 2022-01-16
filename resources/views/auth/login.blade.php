@@ -44,26 +44,30 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                 </div>
-                                <form class="user">
+                                <form class="user" method="POST" action="{{ route('login') }}">
+                                    @csrf
                                     <div class="form-group">
-                                        <input type="email" class="form-control"
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                               placeholder="Username" required>
+                                               placeholder="Email" name="email" required>
+                                               @error('email')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control"
-                                               id="exampleInputPassword" placeholder="Password" required>
+                                        <input type="password" class="form-control  @error('password') is-invalid @enderror"
+                                               id="exampleInputPassword" placeholder="Password" name="password" required>
+                                               @error('password')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox small">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck">
-                                            <label class="custom-control-label" for="customCheck">Remember
-                                                Me</label>
-                                        </div>
-                                    </div>
-                                    <a href="{{route('dashboard.index')}}" class="btn btn-primary btn-block">
+                                    <button class="btn btn-primary btn-block">
                                         Login
-                                    </a>
+                                    </button>
                                     <hr>
                                 </form>
                             </div>

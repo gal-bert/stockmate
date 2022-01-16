@@ -22,12 +22,6 @@ class StaffSeeder extends Seeder
                'staff_gender' => 1
            ],
            [
-               'staff_name' => 'William Chrisandy',
-               'staff_address' => 'Poris Indah 99',
-               'staff_contact' => '087578234131',
-               'staff_gender' => 1
-           ],
-           [
                'staff_name' => 'Gregorius Albert',
                'staff_address' => 'Kebayoran Lama 18',
                'staff_contact' => '087888583221',
