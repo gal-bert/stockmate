@@ -30,7 +30,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('/merchants', \App\Http\Controllers\MerchantController::class);
     Route::resource('/staffs', \App\Http\Controllers\StaffController::class);
-    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 
 
