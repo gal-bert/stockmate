@@ -5,5 +5,5 @@
 - Inside the .env file, rename the `DB_DATABASE` to your DB name
 - In your terminal, run `composer update`
 - Then, run `php artisan key:generate`
-- Run `php artisan migrate`
+- Run `php artisan migrate:refresh --seed`
 - Run `composer dump-autoload`
